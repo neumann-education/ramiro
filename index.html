@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confesión de Química a Primera Vista</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+        #message {
+            text-align: center;
+            font-size: 5vw; /* Ajuste responsive basado en el ancho de la pantalla */
+            padding: 20px;
+            max-width: 90%;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.3); /* Fondo translúcido */
+            color: white;
+            position: absolute;
+            animation: heartbeat 1s infinite; /* Latido de corazón */
+        }
+
+        @media (max-width: 768px) {
+            #message {
+                font-size: 7vw; /* Aumentar el tamaño de la fuente en pantallas móviles */
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #message {
+                font-size: 8vw; /* Aún más grande en dispositivos muy pequeños */
+                padding: 5px;
+            }
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out, move 10s infinite linear;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            100% {
+                transform: translateY(100vh) translateX(50vw);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="message">Haz clic para comenzar la confesión...</div>
+
+    <script>
+        const messages = [
+            "Luis 😍, cuando hablamos por primera vez, pensé que solo sería para aclarar las cosas con tu ex.",
+            "Pero desde ese momento, tu sonrisa y mirada 💫 me atraparon de una forma inesperada.",
+            "Cada vez que hemos salido 🎉, me he divertido como nunca antes. ¡Eres pura alegría!",
+            "Lo mejor es que puedo ser yo mismo contigo 🫶. No tengo que fingir, solo soy yo.",
+            "Siento miedo de que te alejes y vuelvas con él 😥, pero más miedo me da perderte a ti.",
+            "Quiero conocerte más, descubrir cada faceta de Luis 🧡.",
+            "Tus emociones son tan sinceras, tan lindas 💕. Tu esencia ha cautivado mi corazón.",
+            "Luis, no te cambiaría por nada en el mundo 🌍. Solo quiero que sigas siendo tú."
+        ];
+
+        const colors = [
+            {background: "#ff5f6d", text: "#ffffff"}, 
+            {background: "#36d1dc", text: "#000000"}, 
+            {background: "#ffb6b9", text: "#000000"}, 
+            {background: "#84fab0", text: "#2d3436"}, 
+            {background: "#ff9a9e", text: "#ffffff"}, 
+            {background: "#a18cd1", text: "#ffffff"}, 
+            {background: "#ffd3e2", text: "#2d3436"},
+            {background: "#f7b42c", text: "#000000"}
+        ];
+
+        let messageIndex = 0;
+
+        document.body.addEventListener("click", () => {
+            const messageDiv = document.getElementById("message");
+
+            if (messageIndex < messages.length) {
+                // Mostrar el nuevo mensaje
+                messageDiv.innerText = messages[messageIndex];
+                
+                // Cambiar el color de fondo y de texto para buen contraste
+                document.body.style.backgroundColor = colors[messageIndex].background;
+                messageDiv.style.color = colors[messageIndex].text;
+
+                // Animación del mensaje
+                messageDiv.style.opacity = "1";
+                messageDiv.style.transform = "scale(1.2)";
+
+                // Crear las estrellas
+                createStars();
+                messageIndex++;
+            } else {
+                messageDiv.innerText = "Confesión completa. Solo espero que sientas lo mismo... (no estes triste tk)💖";
+            }
+        });
+
+        function createStars() {
+            for (let i = 0; i < 70; i++) {
+                const star = document.createElement("div");
+                star.classList.add("star");
+                star.style.left = Math.random() * window.innerWidth + "px";
+                star.style.top = Math.random() * window.innerHeight + "px";
+                star.style.animationDuration = (Math.random() * 2 + 1) + "s"; // Acelerar el movimiento de las estrellas
+                document.body.appendChild(star);
+                setTimeout(() => star.remove(), 4000);
+            }
+        }
+
+        // Iniciar con estrellas constantemente
+        setInterval(createStars, 2000);
+    </script>
+    
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-400dd0d2-78cd-4b1b-a29f-0e83a1ecfa2c" data-elfsight-app-lazy></div>
+    
+    
+    
+</body>
+</html>
